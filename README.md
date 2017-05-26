@@ -695,6 +695,6 @@ Soru ve Cevapları
 
   Bu örnekte gördüğünüz gibi, `@foreach` ve `@endforeach` annotationları sayesinde, tıpkı herhangi bir programlama dilinde olduğu gibi döngüsel bir biçimde PHP kullanmadan post içerisindeki cevapları kullanıcıya gösterebildik.
 
-#Sonuç
+# Sonuç
 
   Bu anlattıklarımızın ardından, artık, Laravel Framework aracılığıyla basit bir web uygulaması yapabileceğinizi düşünüyoruz. Daha detaylı öğrenebilmeniz için bu örnek projeyi [GitHub'da paylaştık](https://github.com/kayalardanmehmet/LaravelTutorial). Kendi ortamınıza indirip çalıştırarak ve üzerinde istediğiniz değişiklikleri yaparak kendinizi geliştirebilirsiniz. Örneğin bir post görüntülerken post'un ait olduğu kullanıcının adını ve soyadını görüntülemedik. Bunları eklemek sizin için iyi bir egzersiz olabilir. Bu proje üzerinde kendinizi geliştirdikten sonra, kendinize ait bir uygulama geliştirebilirsiniz. Burada cevabını bulamadığınız sorularınız için, [Laravel Documentation](https://laravel.com/docs/5.4) sitesini ziyaret edebilir veya [bize ulaşabilirsiniz](about.md). 
