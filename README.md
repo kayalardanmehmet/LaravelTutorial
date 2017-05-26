@@ -666,7 +666,7 @@ Soru ve Cevapları
 
   Tabi bu kolaylıklar sadece ekrana veri bastırmakla sınırlı değil. PHP içerisinde kullandığımız döngüler, koşul cümleleri gibi işlemleri de yukarıda da görebileceğiniz gibi kolaylıkla halledebiliyoruz. Örneğin; kullanıcı `http://localhost/posts/3` URL'ine bir **get** isteği yaptığında, framework öncelikle ilgili *Route* u buluyor ve burada tanımlı olan methodu kullanıcının göndermiş olduğu parametre ile çağırıyor. Bu örnek için bu method [Controller](tutorial.md#controllerlar)'lar bölümünde içeriğini örnek olarak verdiğimiz PostController sınıfındaki `view()` methodu olacaktır. Hatırlarsanız, bu method **id** adında bir parametre alıyordu ve bu parametreye göre ilgili **post** u veritabanından seçip kullanıcıya gösteriyor. Bir postu kullanıcıya gösterebilmemiz için, o post ile ilişkili cevapları da görüntülememiz gerekiyor. Yine hatırlarsanız bu cevapları Post modeli içerisindeki `answers()` methodu ile bağlamıştık. Blade Engine'in önemli bir özelliğini bu işlem için kullandık.
 
-```php
+```html
 @foreach($post->answers as $answer)
 <div class="post">
     <div class="wrap-ut pull-left">
