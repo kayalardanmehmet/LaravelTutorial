@@ -208,7 +208,7 @@ class Post extends Model
 ```
   Yukarıda da gördüğünüz gibi Route sınıfı *static* olarak çağırılıyor ve iki adet parametre alıyor. Bunlardan ilki isteğe ait URI, diğeri de bu URI'a bir istek geldiğinde çalıştırılacak methodu belirtiyor.
 
-```
+```php
   Route::get('bbm490', function () {
       return 'Merhaba web dersi!';
   });
@@ -218,7 +218,7 @@ class Post extends Model
   Bu örnekte de gördüğünüz gibi, istekleri belirtirken fonksiyonları da direkt tanımlayabiliyoruz. Yukarıdaki istek tanımlandıktan sonra, eğer *localhost'ta* çalışıyorsak, `http://localhost/bbm490` adresini ziyaret ettiğimizde ekranda "Merhaba web dersi" yazısını görürüz.
 
 
-```
+```php
 <?php
 
 Route::group(['middleware' => 'checklogin'], function () {
@@ -265,7 +265,7 @@ Yukarıda, bizim sistemimiz için tasarladığımız istekleri ve karşılığı
 
   Bir Middleware sınıfı oluşturabilmek için komut satırında `php artisan make:middleware CheckLogin` komutunu çalıştırmamız lazım. Bu komut çalıştıktan sonra `app/Http/Middleware` klasörü içerisinde `CheckLogin.php` adında bir dosya oluştuğunu göreceksiniz.
 
-```
+```php
 <?php
 
 namespace App\Http\Middleware;
@@ -295,7 +295,7 @@ class CheckLogin
 
   Middleware'i oluşturduk, ancak bu sınıfı *Route* tarafında kullanabilmek için bir isim atamamız gerekiyor. Bu işlemi gerçekleştirirken `app/Http/Kernel.php` dosyasının içerisinde bulunan `$routeMiddleware` arrayi içerisine oluşturduğumuz middleware sınıfını aşağıdaki örnekte olduğu gibi eklememiz gerekiyor.
 
-```
+```php
 ...
 protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
@@ -321,7 +321,7 @@ protected $routeMiddleware = [
 
   Bu başlık altında yukarıda basettiğimiz controllerları örnekler üzerinden anlatıyor olacağız. Aşağıda, yukarıdaki router örneğinden de görebileceğiniz gibi login sayfasında bulunan formu yönlendireceğimiz */login* isteğinin methodunu görebilirsiniz.
 
-```
+```php
     ...
     //Login formunun yönlendiği controller metodu
     public function doLogin(Request $request){
@@ -368,7 +368,7 @@ Henüz **view** lardan bahsetmedik ancak, bu kod parçacığında ayrıca değin
 
 Yukarıdaki örnek, post isteğine karşılık gelen bir methodun örneğiydi. Bir de parametre barındıran get isteğine karşılık gelen method için örnek verelim.
 
-```
+```php
     ...
 
     //Posta ait detay sayfasını görüntülerken kullanacağımız metot
@@ -408,7 +408,7 @@ Yukarıdaki örnek, post isteğine karşılık gelen bir methodun örneğiydi. B
 
   Bu uygulamayı geliştirirken Bootstrap kullanılmış hazır bir HTML template kullandık. Blade Template Engine, ayrıca *Nesneye Yönelik Programlama* dillerinden aşina olduğumuz **kalıtım** özelliğini de kullanmamızı sağlıyor. Peki bu özelliği  nerede kullanıyoruz ? Projemiz birden fazla sayfadan oluşmakta ancak bu sayfalarda menü kısmı, html yapısı vb. sürekli olarak tekrar eden kısımlar bulunmakta. Her sayfada bu kısımları tekrar etmek yerine, bunları içeren sayfalarda ata olarak belirtmek üzere `main.blade.php` adında bir şablon oluşturduk. Bu şablonun yapısını aşağıda görebilirsiniz.
 
-```
+```php
   <!DOCTYPE html>
   <html lang="en" style="height: 100%;">
       <head>
@@ -502,7 +502,7 @@ Yukarıdaki örnek, post isteğine karşılık gelen bir methodun örneğiydi. B
   Oluşturduğumuz bu şablonda, bazı kısımlarda `@yield()` annotation'ı kullandığımızı görebilirsiniz. Bu kısımlar, bu şablonu ata olarak kullanacak sayfalar tarafından doldurulacak. Aşağıda, bu işlemi gerçekleştirdiğimiz ve **post** ları gösterdiğimiz `view.blade.php` sayfasının içeriğini görebilirsiniz.
 
 
-```
+```php
 
 @extends('main')
 
@@ -655,7 +655,7 @@ Soru ve Cevapları
   Bu dosyanın en üstünde, `@extends('main')` annotation'ı ile, ata şablon olarak `main.blade.php` dosyasını kullanacağımızı belirttik. Daha sonra, ata sınıfında `@yield()` ile tanımlamış olduğumuz iki adet bölümü, burada `@section('sectionAdı') ... @endsection` yapısı içerisinde belirttiğimiz içerik ile  doldurduk.
 
   Daha önce, Blade Template Engine'in en önemli avantajlarından birinin, tasarımcıyı PHP kodu yazmak zorunda bırakmaması olduğunu belirtmiştik. Örnek olarak bu özelliği;
-```
+```php
 <div class="vote_count">
     {{$post->vote}}
 </div>
@@ -666,7 +666,7 @@ Soru ve Cevapları
 
   Tabi bu kolaylıklar sadece ekrana veri bastırmakla sınırlı değil. PHP içerisinde kullandığımız döngüler, koşul cümleleri gibi işlemleri de yukarıda da görebileceğiniz gibi kolaylıkla halledebiliyoruz. Örneğin; kullanıcı `http://localhost/posts/3` URL'ine bir **get** isteği yaptığında, framework öncelikle ilgili *Route* u buluyor ve burada tanımlı olan methodu kullanıcının göndermiş olduğu parametre ile çağırıyor. Bu örnek için bu method [Controller](tutorial.md#controllerlar)'lar bölümünde içeriğini örnek olarak verdiğimiz PostController sınıfındaki `view()` methodu olacaktır. Hatırlarsanız, bu method **id** adında bir parametre alıyordu ve bu parametreye göre ilgili **post** u veritabanından seçip kullanıcıya gösteriyor. Bir postu kullanıcıya gösterebilmemiz için, o post ile ilişkili cevapları da görüntülememiz gerekiyor. Yine hatırlarsanız bu cevapları Post modeli içerisindeki `answers()` methodu ile bağlamıştık. Blade Engine'in önemli bir özelliğini bu işlem için kullandık.
 
-```
+```php
 @foreach($post->answers as $answer)
 <div class="post">
     <div class="wrap-ut pull-left">
