@@ -408,7 +408,7 @@ Yukarıdaki örnek, post isteğine karşılık gelen bir methodun örneğiydi. B
 
   Bu uygulamayı geliştirirken Bootstrap kullanılmış hazır bir HTML template kullandık. Blade Template Engine, ayrıca *Nesneye Yönelik Programlama* dillerinden aşina olduğumuz **kalıtım** özelliğini de kullanmamızı sağlıyor. Peki bu özelliği  nerede kullanıyoruz ? Projemiz birden fazla sayfadan oluşmakta ancak bu sayfalarda menü kısmı, html yapısı vb. sürekli olarak tekrar eden kısımlar bulunmakta. Her sayfada bu kısımları tekrar etmek yerine, bunları içeren sayfalarda ata olarak belirtmek üzere `main.blade.php` adında bir şablon oluşturduk. Bu şablonun yapısını aşağıda görebilirsiniz.
 
-```php
+```html
   <!DOCTYPE html>
   <html lang="en" style="height: 100%;">
       <head>
@@ -502,7 +502,7 @@ Yukarıdaki örnek, post isteğine karşılık gelen bir methodun örneğiydi. B
   Oluşturduğumuz bu şablonda, bazı kısımlarda `@yield()` annotation'ı kullandığımızı görebilirsiniz. Bu kısımlar, bu şablonu ata olarak kullanacak sayfalar tarafından doldurulacak. Aşağıda, bu işlemi gerçekleştirdiğimiz ve **post** ları gösterdiğimiz `view.blade.php` sayfasının içeriğini görebilirsiniz.
 
 
-```php
+```html
 
 @extends('main')
 
@@ -655,7 +655,7 @@ Soru ve Cevapları
   Bu dosyanın en üstünde, `@extends('main')` annotation'ı ile, ata şablon olarak `main.blade.php` dosyasını kullanacağımızı belirttik. Daha sonra, ata sınıfında `@yield()` ile tanımlamış olduğumuz iki adet bölümü, burada `@section('sectionAdı') ... @endsection` yapısı içerisinde belirttiğimiz içerik ile  doldurduk.
 
   Daha önce, Blade Template Engine'in en önemli avantajlarından birinin, tasarımcıyı PHP kodu yazmak zorunda bırakmaması olduğunu belirtmiştik. Örnek olarak bu özelliği;
-```php
+```html
 <div class="vote_count">
     {{$post->vote}}
 </div>
